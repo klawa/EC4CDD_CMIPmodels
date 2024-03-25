@@ -10,7 +10,7 @@ Climate models almost unanimously project the exacerbation of dry extremes in ma
 ## Content 
 * _ECpaper_Figure*py_ files reproduce the corresponding main figures of the paper
 * _Map2_Corr.py_ and _useful_functions.py_ are aiding files for data processing and plotting
-* EC_KL_div*py files are part of the Emergent Constrain calculation package adopted for this study. The original package can be found under GIT:: https://github.com/florentbrient/emergent_constraint and Brient2020: https://doi.org/10.1007/s00376-019-9140-8
+* EC_KL_div*py files are part of the Emergent Constrain calculation package adopted for this study. The original package can be found under https://github.com/florentbrient/emergent_constraint and Brient2020: https://doi.org/10.1007/s00376-019-9140-8
 
 ## Input data
 

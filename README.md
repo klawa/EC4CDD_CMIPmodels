@@ -14,7 +14,7 @@ Climate models almost unanimously project the exacerbation of dry extremes in ma
 
 ## Input data
 
-Data required to reproduce the figures are available from _DOI_zenodo_
+Data required to reproduce the figures are available from https://zenodo.org/records/10869657
 
 ## System specifications
 

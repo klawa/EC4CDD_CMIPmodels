@@ -1,2 +1,25 @@
 # EC4CDD_CMIPmodels
-Codes used to perform the analysis in the study: "Future increase in dry spell duration underestimated in climate model projections."
+This repository contains Python codes to reproduce the main figures of the paper: "Higher increase in dry spell duration unveiled in future climate projections" by Petrova I.Y et al. 2024 DOI: XXX
+
+Author: Irina Yu. Petrova
+
+## Content 
+* _ECpaper_Figure*py_ files reproduce the corresponding main figures of the paper
+* _Map2_Corr.py_ and _useful_functions.py_ are aiding files for data processing and plotting
+* EC_KL_div*py files are part of the Emergent Constrain calculation package adopted for this study. The original package can be found under GIT:: https://github.com/florentbrient/emergent_constraint and Brient2020: https://doi.org/10.1007/s00376-019-9140-8
+
+## Input data
+
+Data required to reproduce the figures are available from _DOI_zenodo_
+
+## System specifications
+
+_This Python package has been prepared and run under the following specifications_
+* Operating System (OS): GNU/ Linux x86_64
+* Software: Conda (version = 4.10.3) 
+* Software: Python (version = 3.7.13)
+
+## Reference
+
+I.Y. Petrova, Diego G.M., Florent B., Markus G.D., Seung-Ki M., Yeon-Hee K., Margot B. Higher increase in dry spell duration unveiled in future climate projections (2024) Journal
+

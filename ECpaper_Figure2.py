@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This code produces Figure2 from the paper
- HIgher increase in dry spell duration unveiled in future climate projections" (ref. below).
+ Higher increase in dry spell duration unveiled in future climate projections" (ref. below).
 
 The code is split into independent functions named
 according to the figure subplots numbering in the paper.
@@ -13,7 +13,7 @@ according to the figure subplots numbering in the paper.
 @Contact:      irina.petrova@ugent.be
 ===============================================
 REFERENCE:
-    Petrova, I.Y., Miralles D.G., ...
+    I.Y. Petrova, Diego G.M., Florent B., Markus G.D., Seung-Ki M., Yeon-Hee K., Margot B. Higher increase in dry spell duration unveiled in future climate projections (2024)
 """
 #%%  Import Libraries: 
 # ======================
@@ -76,8 +76,6 @@ def figure_2ab(dat5,dat6, ylabel_nam=None):
 # =================
 
 input_path = "<<specify a common path to input data here>>"
-
-#input_path = '/kyukon/data/gent/vo/000/gvo00090/vsc42294/D2D/Project2_CDD_globe/DATA/DATA_4_github/'
 
 path = input_path+'/project_out_data/'
 

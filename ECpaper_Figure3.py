@@ -86,48 +86,6 @@ def figure_3ab(path_p, path_f, all_mask, EC_change):
     return fig,ax
 
 
-#%% Figure 3b | End-of_century changes (bar plot):
-# =========================================
-
-'''
-def figure_S8(path_p,path_f1, rel_change_EC, obs_clim):
-    
-    # Load CMIP data
-    mod_past, mod_fut, ind1, ind2 = uf.function_get_CMIP_data(path_p, path_f1, all_mask)
-    # derive EC-corrected projections per region:
-    regions = get_EC_per_region(rel_change_EC, mod_past, mod_fut, obs_clim, ind1, ind2)
-    
-    # Plot bar plots:    
-    fig = plt.figure(); ax = fig.add_subplot(111)
-    
-    ax.axhline(y=0.0, color='k', linestyle='-')
-    ax.axhline(y=-20.0, color='lightgray', linestyle='-', zorder=0)
-    ax.axhline(y=20.0, color='lightgray', linestyle='-', zorder=0)
-    ax.axhline(y=-10.0, color='lightgray', linestyle='--', zorder=0)
-    ax.axhline(y=10.0, color='lightgray', linestyle='--', zorder=0)
-    
-    
-    regions = regions[:8,:]
-    xreg = range(0,len(regions))
-    plt.plot([xreg,xreg],[regions[:,2]-regions[:,3],regions[:,2]+regions[:,3]],lw=15,color='lightgray', zorder=0)
-    plt.scatter(xreg, regions[:,4],color='k',marker='.',s=100)
-    
-    plt.errorbar(np.arange(0,8)+0.4, regions[:,0],yerr=regions[:,1],color='Salmon',marker='o',markerfacecolor='r',ls='none',ms=10,lw=20)
-    
-    plt.xticks(fontsize=20); plt.yticks(fontsize=20)
-    ax.set_xticks(xreg)
-    ax.set_xticklabels( ['CE-AS','E-AF','INDSIA','AMZ','GLOBE','EUR','NA','S-AF'], rotation=45)
-    
-    # -----------------
-    
-    fig = plt.figure(); ax = fig.add_subplot(111)
-    regions = regions[:8,:]
-    #plt.errorbar( regions[:,5],regions[:,2],yerr=regions[:,3],xerr = regions[:,6], color='Gray',marker='.',markerfacecolor='k',ls='none',ms=10,lw=4)
-    plt.scatter(regions[:,5], regions[:,4],color='k',marker='.',s=100)
-    plt.errorbar( regions[:,7],regions[:,0],yerr=regions[:,1],xerr = regions[:,8], color='Salmon',marker='o',markerfacecolor='r',ls='none',ms=10,lw=5)
-    
-    return fig,ax
-'''
 
 #%% Figure 3cd | all century changes (time-series plot):
 # =========================================
@@ -150,7 +108,7 @@ def figure_3cd(ouput, output2):
         output = get_EC_per_region(rel_change_EC1, mod_past, mod_fut, obs_clim, ind1, ind2, timeser=True,domainin=dd)      # 4.5
         output2 = get_EC_per_region(rel_change_EC2, mod_past2, mod_fut2, obs_clim, ind12, ind22,timeser=True, domainin=dd) # 8.5
         
-        pathout = '/kyukon/data/gent/vo/000/gvo00090/vsc42294/D2D/Project2_CDD_globe/DATA/DATA_4_github/project_out_data/EC_timeseries/'
+        pathout = ' '
         pickle.dump(output, open(pathout+'EC_timeseries_SSP45_domain_'+dd+'.pkl','wb'))
         pickle.dump(output2, open(pathout+'EC_timeseries_SSP85_domain_'+dd+'.pkl','wb'))
     '''    

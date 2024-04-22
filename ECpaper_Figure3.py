@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This code produces Figure3 from the paper
- HIgher increase in dry spell duration unveiled in future climate projections" (ref. below).
+ Higher increase in dry spell duration unveiled in future climate projections" (ref. below).
 
 The code is split into independent functions named
 according to the figure subplots numbering in the paper.
@@ -13,7 +13,7 @@ according to the figure subplots numbering in the paper.
 @Contact:      irina.petrova@ugent.be
 ===============================================
 REFERENCE:
-    Petrova, I.Y., Miralles D.G., ...
+    I.Y. Petrova, Diego G.M., Florent B., Markus G.D., Seung-Ki M., Yeon-Hee K., Margot B. Higher increase in dry spell duration unveiled in future climate projections (2024)
 """
 #%%  Import Libraries: 
 # ======================
@@ -202,8 +202,6 @@ def figure_3cd(ouput, output2):
 # =================
 input_path = "<<specify a common path to input data here>>"
 
-#input_path = '/kyukon/data/gent/vo/000/gvo00090/vsc42294/D2D/Project2_CDD_globe/DATA/DATA_4_github/'
-
 # CLimatologies:
 ip_folder_o     = input_path + '/project_in_data/obs_clim/'
 ip_folder_m6p   = input_path + '/project_in_data/cmip6_clim_past/'
@@ -223,9 +221,6 @@ obs_clim = uf.get_data(ip_folder_o,'*.nc' , multiple=True, cdd_mask=all_mask.cdd
 
 # Get CMIP6 time-series:
 # --------------------
-#path_f1 = '/data/gent/vo/000/gvo00090/EXT/data/CLIMDEX_CMIP6/cdd_rescaled/ssp245/runmean_per_2015-2100/'  
-#path_f2 = '/data/gent/vo/000/gvo00090/EXT/data/CLIMDEX_CMIP6/cdd_rescaled/ssp585/runmean_per_2015-2100/' 
-
 
 # Get EC-corrected DATA:
 # -----------------------

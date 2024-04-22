@@ -13,7 +13,7 @@ according to the figure subplots numbering in the paper.
 @Contact:      irina.petrova@ugent.be
 ===============================================
 REFERENCE:
-    Petrova, I.Y., Miralles D.G., ...
+    I.Y. Petrova, Diego G.M., Florent B., Markus G.D., Seung-Ki M., Yeon-Hee K., Margot B. Higher increase in dry spell duration unveiled in future climate projections (2024)
 """
 #%%  Import Libraries: 
 # ======================
@@ -31,8 +31,7 @@ import pandas as pd
 # ==============================================
 
 def figure_4a(path):
-    
-    #path = '/data/gent/vo/000/gvo00090/vsc42294/D2D/Project2_CDD_globe/SCRIPTS/0_python_project_codes/02_output_data_pangeo/'
+        
     files = ['cmip6_pangeo_LAD2r1mm_corr.pkl' ,'cmip6_pangeo_LAD2pr_corr.pkl', 'cmip6_pangeo_LAD2resolution_corr.pkl']
     
     data_vp=[]
@@ -64,10 +63,8 @@ def figure_4a(path):
 #%%    Figure 4b | DRY-WET models & LAD change bar plot::
 # ==============================================
 
-def figure_4b(path):   
-    
-    #path = '/data/gent/vo/000/gvo00090/vsc42294/D2D/Project2_CDD_globe/SCRIPTS/0_python_project_codes/01_input_data_pangeo/'
-        
+def figure_4b(path):      
+           
     dry_dLAD=[]; wet_dLAD=[];
     dval=[];   pvalue=[]
     
@@ -142,8 +139,7 @@ def figure_4b(path):
 # =====================================================
 
 def figure_4c(path):
-       
-    #path = '/data/gent/vo/000/gvo00090/vsc42294/D2D/Project2_CDD_globe/SCRIPTS/0_python_project_codes/02_output_data_pangeo/ad_test_data/'
+          
     ## INPUT DATA:
     ## ================
     
@@ -213,8 +209,6 @@ def figure_4c(path):
 #%% SET Data paths:
 # =================
 input_path = "<<specify a common path to input data here>>"
-
-#input_path = '/kyukon/data/gent/vo/000/gvo00090/vsc42294/D2D/Project2_CDD_globe/DATA/DATA_4_github/'
 
 path = input_path+'/project_out_data/Pangeo_output/'
 

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This code produces Figure4 from the paper
- HIgher increase in dry spell duration unveiled in future climate projections" (ref. below).
+ "Observation-constrained projections reveal longer-than-expected dry spells"
 
 The code is split into independent functions named
 according to the figure subplots numbering in the paper.
@@ -13,7 +13,7 @@ according to the figure subplots numbering in the paper.
 @Contact:      irina.petrova@ugent.be
 ===============================================
 REFERENCE:
-    I.Y. Petrova, Diego G.M., Florent B., Markus G.D., Seung-Ki M., Yeon-Hee K., Margot B. Higher increase in dry spell duration unveiled in future climate projections (2024)
+    Petrova, I.Y., Miralles D.G., ...
 """
 #%%  Import Libraries: 
 # ======================
@@ -31,7 +31,7 @@ import pandas as pd
 # ==============================================
 
 def figure_4a(path):
-        
+       
     files = ['cmip6_pangeo_LAD2r1mm_corr.pkl' ,'cmip6_pangeo_LAD2pr_corr.pkl', 'cmip6_pangeo_LAD2resolution_corr.pkl']
     
     data_vp=[]
@@ -42,7 +42,9 @@ def figure_4a(path):
     
     # PLotting....
     # --------------------
-    fig, ax1 = plt.subplots(figsize=(8, 6),dpi=300)
+    #fig, ax1 = plt.subplots(figsize=(8, 6),dpi=300)
+    fig, ax1 = plt.subplots(figsize=(5, 3),dpi=600)
+    
     ax1.set_facecolor('white');
     #ax1.grid(linestyle='-',color='white')
     uf.violin_plot(ax1,data_vp,([0,1,2]), 40, normed=False, density=True, bp=True, violin=True, plot_data=False)
@@ -55,16 +57,20 @@ def figure_4a(path):
     ax1.set_xticklabels(['r1mm','Ptot','modRes'])
     ax1.set_ylabel('LAD correlation to rain, R [-]', fontsize=7)
     
-    #ax1.spines['top'].set_visible(False)
-    #ax1.spines['right'].set_visible(False)    
+    ax1.spines['top'].set_visible(False)
+    ax1.spines['right'].set_visible(False)  
+    
+    plt.xticks(fontsize=7); plt.yticks(fontsize=7)
+    
     return fig,ax1
 
 
 #%%    Figure 4b | DRY-WET models & LAD change bar plot::
 # ==============================================
 
-def figure_4b(path):      
-           
+def figure_4b(path):   
+    
+            
     dry_dLAD=[]; wet_dLAD=[];
     dval=[];   pvalue=[]
     
@@ -108,7 +114,8 @@ def figure_4b(path):
     
     # PLOTTING ...
     # ----------------------
-    fig = plt.figure(facecolor='white',figsize=(8,7),dpi=300);  ax = fig.add_subplot(111);
+    #fig = plt.figure(facecolor='white',figsize=(8,7),dpi=300);  ax = fig.add_subplot(111);
+    fig, ax = plt.subplots(figsize=(5, 3),dpi=600)
     
     ax.bar(np.arange(0,24,3),np.array(pvalue), width=3, linestyle='--', color='LightGray',zorder=2)
     ax = uf.line_plot_props(ax,'','AD test p-value [-]',7,cc='Gray',grid=False)
@@ -134,12 +141,11 @@ def figure_4b(path):
     
     return fig,ax
 
-
 #%%    Figure 4c | CMIP6 hydro-climatic vars changes |  bubble matrix plot:
 # =====================================================
 
-def figure_4c(path):
-          
+def figure_4c(path):       
+   
     ## INPUT DATA:
     ## ================
     
@@ -181,15 +187,17 @@ def figure_4c(path):
     cmap.set_over('DarkRed'); cmap.set_under('Indigo')
     norm1   = mpl.colors.BoundaryNorm(levels, cmap.N)
     
-    fig = plt.figure(facecolor='white'); ax =fig.add_subplot(111)
+    #fig = plt.figure(facecolor='white'); ax =fig.add_subplot(111)
+    fig, ax = plt.subplots(figsize=(5,7.5),dpi=600)
+    
     Y,X = np.meshgrid(np.arange(0,8),np.arange(0,16))
 
     mm = df_p.values<=0.01;
 
     ## For AD difference:
     # ------------------------------------------------    
-    plt.scatter(Y[mm],X[mm],c = df_s.values[mm],s=np.abs(df_d.values[mm])*100, cmap=cmap, norm = norm1,alpha=0.4)
-    plt.scatter(Y[mm], X[mm], color='DarkGray',marker='x',s=150, edgecolor='darkGray',linewidth=2)
+    plt.scatter(Y[mm],X[mm],c = df_s.values[mm],s=np.abs(df_d.values[mm])*30, cmap=cmap, norm = norm1,alpha=0.4)
+    plt.scatter(Y[mm], X[mm], color='DarkGray',marker='x',s=100, edgecolor='darkGray',linewidth=2)
  
     ax.set_facecolor('DarkGray')
     ax.set_xticks(np.arange(0,8))
@@ -197,18 +205,16 @@ def figure_4c(path):
     ax.set_yticks(np.arange(0,16))
     ax.set_yticklabels(VARS)
     
-    plt.xticks(fontsize=20); plt.yticks(fontsize=20)
-    plt.xticks(fontsize=16); plt.yticks(fontsize=16)
-   
+    plt.xticks(fontsize=7); plt.yticks(fontsize=7)
+    
     return fig, ax
-
-
 
 
 
 #%% SET Data paths:
 # =================
 input_path = "<<specify a common path to input data here>>"
+
 
 path = input_path+'/project_out_data/Pangeo_output/'
 
@@ -224,10 +230,4 @@ fig,ax = figure_4a(path+'corr_global/')
 fig,ax = figure_4b(path+'dry_wet_models_stat/')
 
 fig,ax = figure_4c(path+'AD_test_climvars/')
-
-
-
-
-
-
 

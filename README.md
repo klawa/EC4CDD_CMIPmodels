@@ -5,7 +5,8 @@ Author: Irina Y. Petrova
 
 ## Abstract
 
-Climate models project an exacerbation of dry extremes in many world regions. Simultaneously, confidence in the magnitude and timing of projected changes remains low, leaving societies largely unprepared⁠. Here we propose a new emergent constraint (EC) on the simplest but core indicator of drought, the lack of rainfall, expressed as the longest annual dry spell (LAD). Using two generations of climate models, we uncover global regions where historical LAD biases affect the magnitude of projected LAD increases, and explore the role of land–atmosphere feedbacks therein. Constraining model projections with observations using the new EC reduces the uncertainty in future predictions by 10–26% globally and reveals a 42–44% higher LAD increase than in “mid-range” or “high-end” future forcing scenarios. Our results imply that the end-of-century global land-only LAD could be on average 10 days longer than expected. Our findings expose regions with potentially higher- and earlier-than-expected drought risks for societies and ecosystems, and they point to possible mechanisms underlying the biases in the current generation of climate models. 
+Climate models project an exacerbation of dry extremes in many world regions 1,2⁠⁠⁠. However, confidence in the magnitude and timing of projected changes remains low 3,4⁠, leaving societies largely unprepared 5,6⁠. Here we show that constraining model projections with observations using a newly proposed emergent constraint (EC) reduces the uncertainty in future predictions of a core drought indicator, the longest annual dry spell (LAD), by 10–26% globally. The EC-corrected projections reveal a 42–44% higher LAD increase, on average, than “mid-range” or “high-end” future forcing scenarios suggest. Our results imply that the end-of-century global mean land-only LAD could be 10 days longer than currently expected. Using two generations of climate models, we further uncover global regions where historical LAD biases affect the magnitude of projected LAD increases, and explore the role of land–atmosphere feedbacks therein. Our findings expose regions with potentially higher- and earlier-than-expected drought risks for societies and ecosystems, and they point to possible mechanisms underlying the biases in the current generation of climate models. 
+
 
 ## Content 
 * _ECpaper_Figure*py_ files reproduce the corresponding main figures of the paper
@@ -14,7 +15,7 @@ Climate models project an exacerbation of dry extremes in many world regions. Si
 
 ## Input data
 
-Data required to reproduce the figures are available from https://doi.org/10.5281/zenodo.10869657
+Data required to reproduce the figures are available from https://doi.org/10.5281/zenodo.11636527
 
 ## System specifications
 

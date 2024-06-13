@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 This code produces Figure1 from the paper
- Higher increase in dry spell duration unveiled in future climate projections" (ref. below).
+ "Observation-constrained projections reveal longer-than-expected dry spells"
 
 The code is split into independent functions named
 according to the figure subplots numbering in the paper.
@@ -13,7 +13,7 @@ according to the figure subplots numbering in the paper.
 @Contact:      irina.petrova@ugent.be
 ===============================================
 REFERENCE:
-    I.Y. Petrova, Diego G.M., Florent B., Markus G.D., Seung-Ki M., Yeon-Hee K., Margot B. Higher increase in dry spell duration unveiled in future climate projections (2024)
+    Petrova, I.Y., Miralles D.G., ...
 """
 #%%  Import Libraries: 
 # ======================
@@ -30,7 +30,7 @@ import matplotlib.pyplot as plt
 
 def figure_1a(obs_clim):
     '''
-    Plots of historical LAD climatology with uncertainty regions
+    Plots historical LAD climatology with uncertainty regions
     ----------    
     Parameters
     ----------
@@ -56,7 +56,7 @@ def figure_1a(obs_clim):
     cmap    = uf.custom_div_cmap(6, mincol='gray', midcol='tan' ,maxcol='sienna')
     cmap.set_over('SaddleBrown'); cmap.set_under('DimGray')
     
-    fig,ax  = uf.plot_map_levels(np.nanmedian(obs_clim.values, axis=0),lon,lat, levels,cmap,size=0.5,c_title='[days]', title='Observed LAD',mask=std_rel,figureN='2') #std_rel*100)
+    fig,ax  = uf.plot_map_levels(np.nanmedian(obs_clim.values, axis=0),lon,lat, levels,cmap,size=0.12,c_title='[days]', title='Observed LAD',mask=std_rel,figureN='2') #std_rel*100)
     
     return fig,ax
     
@@ -117,7 +117,7 @@ def figure_1bc(mod_fut, mod_past, ind1, ind2):
     
 #%% Figure 1b,d | Future uncertainty: (from AN7_cmip5_EmergConstr_plots.py)
 # ==========================================
-def figure_1def(obs_clim, mod_fut, mod_past, ind1,ind2):  # mod_fut2, mod_past2, ind12,ind22): if with CMIP5
+def figure_1def(obs_clim, mod_fut, mod_past, ind1,ind2, mod_fut2, mod_past2, ind12,ind22): 
     '''
     PLots zonal distribution of future LAD change, past LAD and its uncertainty
     ---------
@@ -142,47 +142,66 @@ def figure_1def(obs_clim, mod_fut, mod_past, ind1,ind2):  # mod_fut2, mod_past2,
     
     # Model past uncertainty:
     m_past      = mod_past[ind1].mean(axis=2,skipna=True) - np.mean(obs_lat, axis=0)    # CMIP6
-    #m_past2     = mod_past2[ind12].mean(axis=2,skipna=True) - np.mean(obs_lat, axis=0)  # CMIP5
+    m_past2     = mod_past2[ind12].mean(axis=2,skipna=True) - np.mean(obs_lat, axis=0)  # CMIP5
     
     # Future change:
     m_fut       = mod_fut[ind2].mean(axis=2,skipna=True) - mod_past[ind1].mean(axis=2,skipna=True)      # CMIP6
-    #m_fut2      = mod_fut2[ind22].mean(axis=2,skipna=True) - mod_past2[ind12].mean(axis=2,skipna=True)  # CMIP5
+    m_fut2      = mod_fut2[ind22].mean(axis=2,skipna=True) - mod_past2[ind12].mean(axis=2,skipna=True)  # CMIP5
     
     # PLOTTING ....
     # ==============    
-    fig = plt.figure(facecolor='white',figsize=(4,2.5),dpi=200); 
+    fig = plt.figure(facecolor='white',figsize=(5,5),dpi=600); 
    
-    # Plot PAST BIAS:
+    '''
+    # Fig.1a - Plot PAST BIAS:
     # --------------------
+    '''
     ax = fig.add_subplot(1,2,1);
-    #plot shaded range of uncertainty:    
+    
+    #plot shaded range of uncertainty:  
+    # --------------------------------
     ax.fill_betweenx(obs_lat.lat,np.mean(obs_lat2, axis=0)-np.std(obs_lat2,axis=0), np.mean(obs_lat2, axis=0)+np.std(obs_lat2,axis=0), facecolor='none',hatch='.',edgecolor='k',linewidth=0.5)
-    #ax.fill_betweenx(m_past.lat,np.mean(m_past2, axis=0)-np.std(m_past2,axis=0), np.mean(m_past2, axis=0)+np.std(m_past2,axis=0), alpha=0.25, color='gray')
+    ax.fill_betweenx(m_past.lat,np.mean(m_past2, axis=0)-np.std(m_past2,axis=0), np.mean(m_past2, axis=0)+np.std(m_past2,axis=0), alpha=0.25, color='gray')
     ax.fill_betweenx(m_past.lat,np.mean(m_past, axis=0)-np.std(m_past,axis=0), np.mean(m_past, axis=0)+np.std(m_past,axis=0), alpha=0.25, color='brown')
+    
     # Plot zonal means:
+    # --------------------------------
     ax.plot(np.mean(obs_lat2, axis=0), obs_lat.lat, color='k',linestyle='-', linewidth=1)
-    #ax.plot(np.mean(m_past2, axis=0), m_past.lat,  color='brown',linestyle='-', linewidth=1)
-    #ax.plot(np.mean(m_past, axis=0), m_past.lat,  color='gray',linestyle='-', linewidth=1)
+    ax.plot(np.mean(m_past2, axis=0), m_past.lat,  color='gray',linestyle='-', linewidth=1)
+    ax.plot(np.mean(m_past, axis=0), m_past.lat,  color='brown',linestyle='-', linewidth=1)
     
     plt.xticks(fontsize=7); plt.yticks(fontsize=7)
     
-    # Plot FUTURE CHANGE:
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    
+    '''
+    # Fig 1e,f - Plot FUTURE CHANGE:
     # -----------------
+    '''
     ax = fig.add_subplot(1,2,2);
         
     #ax.fill_betweenx(m_fut.lat, np.nanmin(m_fut2, axis=0), np.nanmax(m_fut2, axis=0), alpha=0.25, color='gray')
     #ax.fill_betweenx(m_fut.lat, np.nanmin(m_fut, axis=0), np.nanmax(m_fut, axis=0), alpha=0.25, color='brown')
+    
     # plot uncertainty range:
-    #ax.fill_betweenx(m_fut.lat,np.mean(m_fut2, axis=0)-np.std(m_fut2,axis=0), np.mean(m_fut2, axis=0)+np.std(m_fut2,axis=0), alpha=0.25, color='gray')
+    # -------------------
+    ax.fill_betweenx(m_fut.lat,np.mean(m_fut2, axis=0)-np.std(m_fut2,axis=0), np.mean(m_fut2, axis=0)+np.std(m_fut2,axis=0), alpha=0.25, color='gray')
     ax.fill_betweenx(m_fut.lat,np.mean(m_fut, axis=0)-np.std(m_fut, axis=0), np.mean(m_fut, axis=0)+np.std(m_fut, axis=0), alpha=0.25, color='brown')
+    
     # Plot zonal means:
+    # ---------------
     ax.plot(np.mean(obs_lat2, axis=0), obs_lat.lat, color='k',linestyle='-', linewidth=1, label='Obs')
     ax.plot(np.mean(m_fut, axis=0), m_fut.lat, color='brown',linestyle='-', linewidth=1,label='CMIP6')
-    #ax.plot(np.mean(m_fut2, axis=0),m_fut.lat,  color='gray',linestyle='-', linewidth=1,label='CMIP5')
+    ax.plot(np.mean(m_fut2, axis=0),m_fut.lat,  color='gray',linestyle='-', linewidth=1,label='CMIP5')
     
     plt.xticks(fontsize=7); plt.yticks(fontsize=7)
+    
+    ax.spines['top'].set_visible(False)
+    ax.spines['right'].set_visible(False)
+    
     #ax.grid(axis='both',linestyle=':')
-    ax.set_xlim(-15,75)
+    ax.set_xlim(-15,50)
     #plt.legend(frameon=False, fontsize=7)
 
     return fig,ax
@@ -200,9 +219,15 @@ def figure_1def(obs_clim, mod_fut, mod_past, ind1,ind2):  # mod_fut2, mod_past2,
 input_path = "<<specify a common path to input data here>>"
 
 ip_folder_o     = input_path + '/project_in_data/obs_clim/'
+# CMIP6:
 ip_folder_m6p   = input_path + '/project_in_data/cmip6_clim_past/'
-ip_folder_m6f   = input_path + '/project_in_data/cmip6_clim_fut/'
+#ip_folder_m6f   = input_path + '/project_in_data/cmip6_clim_fut/'
+ip_folder_m6f   = input_path + '/project_in_data/cmip6_clim_fut_45/'
 
+#CMIP5:
+ip_folder_m5p   = input_path + '/project_in_data/cmip5_clim_past/'
+#ip_folder_m5f   = input_path + '/project_in_data/cmip5_clim_fut/'
+ip_folder_m5f   = input_path + '/project_in_data/cmip5_clim_fut_45/'
 
 #%% Get INPUT DATA:
 # ===================
@@ -216,8 +241,11 @@ obs_clim = uf.get_data(ip_folder_o,'*.nc' , multiple=True, cdd_mask=all_mask.cdd
 
 # Get CMIP6 climatology:
 # --------------------
-mod_past, mod_fut, ind1, ind2 = uf.function_get_CMIP_data(ip_folder_m6p,ip_folder_m6f, all_mask)
+mod_past, mod_fut, ind1, ind2 = uf.function_get_CMIP_data(ip_folder_m6p,ip_folder_m6f, all_mask,squeeze_time=True)
 
+# Get CMIP5 climatology:
+# --------------------
+mod_past2, mod_fut2, ind12, ind22 = uf.function_get_CMIP_data(ip_folder_m5p,ip_folder_m5f, all_mask,squeeze_time=True)
 
 #%% # PLot figures:
 # ==============================        
